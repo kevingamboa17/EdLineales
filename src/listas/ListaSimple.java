@@ -15,16 +15,39 @@ public class ListaSimple extends Lista {
 
     @Override
     public void insertarFinal(Object dato) {
-
+        if (vacio())
+            inicio = ultimo = new Nodo(dato);
+        else {
+            Nodo temp = new Nodo(dato);
+            ultimo.setSiguiente(temp);
+            ultimo = temp;
+        }
     }
 
     @Override
     public Object eliminaInicio() {
-        return null;
+        Object eliminado;
+        if (vacio())
+            eliminado = null;
+        else {
+            eliminado = inicio.getDato();
+            inicio = inicio.getSiguiente();
+        }
+        return eliminado;
     }
 
     @Override
     public Object eliminaFinal() {
+        Nodo actual = inicio;
+        while (actual != null){
+            if (actual.getSiguiente() == null){
+                System.out.println(actual);
+            }
+            else {
+                actual = actual.getSiguiente();
+            }
+
+        }
         return null;
     }
 
@@ -48,7 +71,10 @@ public class ListaSimple extends Lista {
         lista.insertarInicio("Perro");
         lista.insertarInicio(256.3);
         lista.insertarInicio('f');
+        //lista.insertarFinal("casa");
         lista.Imprimir();
-        System.out.println("\n" + lista.get(-1));
+        lista.eliminaFinal();
+        lista.Imprimir();
+        //System.out.println("\n" + lista.get(-1));
     }
 }
